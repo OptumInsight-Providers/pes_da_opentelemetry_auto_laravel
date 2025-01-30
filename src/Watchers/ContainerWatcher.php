@@ -38,7 +38,6 @@ class ContainerWatcher extends Watcher
 	$app->resolving(function (mixed $object, Application $app) {
 		$namespace = is_string($object) ? $object : get_class($object);
                 if(str_starts_with($namespace, "App") && strpos($namespace, 'Controller') === false){
-                        //var_dump($namespace);
                         $span = $this->instrumentation->tracer()->spanBuilder($namespace)
                         ->setSpanKind(SpanKind::KIND_SERVER)
                         ->startSpan();
