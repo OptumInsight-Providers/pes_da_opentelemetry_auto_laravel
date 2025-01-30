@@ -51,7 +51,7 @@ class ContainerWatcher extends Watcher
             		])->startSpan();
 		$span->end();
 		 */
-		if(str_starts_with($namespace, "App")){
+		if(str_starts_with($namespace, "App") && strpos($namespace, 'Controller') === false){
 			//var_dump($object);
 			$span = $this->instrumentation->tracer()->spanBuilder($namespace)
                         ->setSpanKind(SpanKind::KIND_SERVER)
