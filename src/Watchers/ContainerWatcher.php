@@ -37,27 +37,13 @@ class ContainerWatcher extends Watcher
     {
 	$app->resolving(function (mixed $object, Application $app) {
 		$namespace = is_string($object) ? $object : get_class($object);
-		//var_dump($namespace);
-		/*
-        	$span = $this->instrumentation->tracer()->spanBuilder($request->request->method())
-            		->setSpanKind(SpanKind::KIND_CLIENT)
-            		->setAttributes([
-                		TraceAttributes::HTTP_REQUEST_METHOD => $request->request->method(),
-                		TraceAttributes::URL_FULL => $processedUrl,
-                		TraceAttributes::URL_PATH => $parsedUrl['path'] ?? '',
-                		TraceAttributes::URL_SCHEME => $parsedUrl['scheme'] ?? '',
-                		TraceAttributes::SERVER_ADDRESS => $parsedUrl['host'] ?? '',
-                		TraceAttributes::SERVER_PORT => $parsedUrl['port'] ?? '',
-            		])->startSpan();
-		$span->end();
-		 */
-		if(str_starts_with($namespace, "App") && strpos($namespace, 'Controller') === false){
-			//var_dump($object);
-			$span = $this->instrumentation->tracer()->spanBuilder($namespace)
+                if(str_starts_with($namespace, "App") && strpos($namespace, 'Controller') === false){
+                        //var_dump($namespace);
+                        $span = $this->instrumentation->tracer()->spanBuilder($namespace)
                         ->setSpanKind(SpanKind::KIND_SERVER)
                         ->startSpan();
                         $span->end();
-		}
+                }
 	});
     }
 
