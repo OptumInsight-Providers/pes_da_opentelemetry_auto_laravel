@@ -53,6 +53,10 @@ class ContainerWatcher extends Watcher
 		 */
 		if(str_starts_with($namespace, "App")){
 			//var_dump($object);
+			$span = $this->instrumentation->tracer()->spanBuilder($namespace)
+                        ->setSpanKind(SpanKind::KIND_SERVER)
+                        ->startSpan();
+                        $span->end();
 		}
 	});
     }
