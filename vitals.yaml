@@ -1,0 +1,8 @@
+apiVersion: v1
+metadata:
+  askId: poc
+  caAgileId: poc
+  projectKey: com.optum.pes:pes_da_opentelemetry_auto_laravel
+  projectFriendlyName: pes_da_opentelemetry_auto_laravel
+  componentType: code
+  targetQG: GATE_00
